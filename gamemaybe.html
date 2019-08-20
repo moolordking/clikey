@@ -1,0 +1,269 @@
+<html>
+<head>
+	<title></title>
+	<style>
+		body {
+			background-color: #ed6724;
+			user-select: none;
+		}
+		h1 {
+			color: white;
+			text-align: center;
+			font-size: 9vw;
+			font-family: Arial Black;
+			text-shadow: 0px 0px 10px white;
+		}
+		h2 {
+			color: white;
+			text-align: center;
+			font-size: 5vw;
+			font-family: Arial Black;
+			text-shadow: 0px 0px 10px white;
+		}
+		#Clickster {
+			width: 30vw;
+			height: 30vw;
+			background-color: white;
+			border-radius: 10px;
+			animation: clickedout 0.2s;
+			animation-fill-mode: forwards;
+			background-color: white;
+			box-shadow: 0px 0px 10px white;
+		}
+		#Clickster:active {
+			animation: clicked 0.2s;
+			animation-fill-mode: forwards;
+		}
+
+
+		@keyframes clicked {
+			0%{border-radius: 10px;}
+			100%{border-radius: 30px;transform: scale(1.3);}
+		}
+
+		@keyframes clickedout {
+			0%{border-radius: 30px;}
+			70%{transform: scale(0.9);}
+			100%{border-radius: 10px;transform: scale(1);}
+		}
+
+
+		.buttons {
+			width: 13vw;
+			height: 5vw;
+			background-color: white;
+			border-radius: 10px;
+			animation: clickedout 0.2s;
+			animation-fill-mode: forwards;
+			background-color: white;
+			box-shadow: 0px 0px 7px white;
+			float: left;
+			margin: 1vw;
+
+			color: #ed6724;
+			text-align: center;
+			font-size: 3vw;
+			font-family: Arial Black;
+			text-shadow: 0px 0px 2px #ed6724;
+		}
+
+		.buttons:active {
+			animation: clicked 0.2s;
+			animation-fill-mode: forwards;
+		}
+
+		#parentis {
+			width: 30vw;
+		}
+
+
+	</style>
+</head>
+<body>
+
+	<h2 id="multiplyer">x0 : x1</h2>
+	<h1>CLIKR</h1>
+	<center>
+	<div id="Clickster" onclick="cliked()">
+	</div>
+	<h2 id="scorer">0 CLIKS</h2>
+	<br>
+<div id="parentis">
+	<div class="buttons" onclick="clik11()">100</div><div class="buttons" onclick="clik21()">100</div>
+	<div class="buttons" onclick="clik12()">500</div><div class="buttons" onclick="clik22()">500</div>
+	<div class="buttons" onclick="clik13()">1000</div><div class="buttons" onclick="clik23()">1000</div>
+	<div class="buttons" onclick="clik14()">10K</div><div class="buttons" onclick="clik24()">10K</div>
+
+	<div class="buttons" onclick="clik15()">50K</div><div class="buttons" onclick="clik25()">50K</div>
+	<div class="buttons" onclick="clik16()">500K</div><div class="buttons" onclick="clik26()">500K</div>
+	<div class="buttons" onclick="clik17()">1M</div><div class="buttons" onclick="clik27()">1M</div>
+	<div class="buttons" onclick="clik18()">50M</div><div class="buttons" onclick="clik28()">50M</div>
+</div>
+	<br>
+	</center>
+
+	<script>
+		//alert("Random Text Alert");
+		//prompt("Random Input Alert");
+		var clikvalue = 1;
+		var clikstotal = 0;
+		var clikadder = 0;
+		var divy = 1;
+		var addtext = "";
+		var clikstotaler = 0;
+		var cliksvalueer = 1;
+		var cliksadderer = 0;
+		window.onload = setInterval(looper, 100/60);
+		clikstotal = Math.round(localStorage.getItem("clikstotalclikser"));
+		localStorage.setItem("clikstotalclikser", clikstotaler);
+		clikvalue = Math.round(localStorage.getItem("cliksvalueclikser"));
+		localStorage.setItem("cliksvalueclikser", cliksvalueer);
+		clikadder = Math.round(localStorage.getItem("clikscliksadderclikser"));
+		localStorage.setItem("clikscliksadderclikser", cliksadderer);
+
+		function cliked() {
+			clikstotal += clikvalue;
+		}
+
+		function looper() {
+			clikstotal +=clikadder;
+			document.getElementById("scorer").innerHTML =  Math.round(clikstotal / divy) + addtext + " CLICKS";
+			document.getElementById("multiplyer").innerHTML = "x" + Math.round(clikadder * 1000) + " : x" + clikvalue;
+			localStorage.setItem("clikstotalclikser", clikstotaler);
+			localStorage.setItem("cliksvalueclikser", cliksvalueer);
+			localStorage.setItem("clikscliksadderclikser", cliksadderer);
+
+			clikstotaler = clikstotal;
+			cliksvalueer = clikvalue;
+			cliksadderer = clikadder;
+
+			if (clikstotal >= 1000000) {
+				divy = 1000000;
+				addtext = "M";
+			} else if (clikstotal >= 1000 && clikstotal < 1000000) {
+				divy = 1000;
+				addtext = "K";
+			}
+			else {
+				divy = 1;
+				addtext = "";
+			}
+		}
+
+		function clik11() {
+			if (clikstotal > 99) {
+				clikstotal -= 100;
+				clikadder += 0.001;
+			}
+		}
+
+		function clik21() {
+			if (clikstotal > 99) {
+				clikstotal -= 100;
+				clikvalue += 0.5;
+			}
+		}
+
+		function clik12() {
+			if (clikstotal > 499) {
+				clikstotal -= 500;
+				clikadder += 0.008;
+			}
+		}
+
+		function clik22() {
+			if (clikstotal > 499) {
+				clikstotal -= 500;
+				clikvalue += 3;
+			}
+		}
+
+		function clik13() {
+			if (clikstotal > 999) {
+				clikstotal -= 1000;
+				clikadder += 0.022;
+			}
+		}
+
+		function clik23() {
+			if (clikstotal > 999) {
+				clikstotal -= 1000;
+				clikvalue += 10;
+			}
+		}
+
+		function clik14() {
+			if (clikstotal > 9999) {
+				clikstotal -= 10000;
+				clikadder += 0.30;
+			}
+		}
+
+		function clik24() {
+			if (clikstotal > 9999) {
+				clikstotal -= 10000;
+				clikvalue += 130;
+			}
+		}
+
+
+
+		function clik15() {
+			if (clikstotal > 49999) {
+				clikstotal -= 50000;
+				clikadder += 1.8;
+			}
+		}
+
+		function clik25() {
+			if (clikstotal > 49999) {
+				clikstotal -= 50000;
+				clikvalue += 720;
+			}
+		}
+
+		function clik16() {
+			if (clikstotal > 499999) {
+				clikstotal -= 500000;
+				clikadder += 7;
+			}
+		}
+
+		function clik26() {
+			if (clikstotal > 499999) {
+				clikstotal -= 500000;
+				clikvalue += 8000;
+			}
+		}
+
+		function clik17() {
+			if (clikstotal > 999999) {
+				clikstotal -= 1000000;
+				clikadder += 60;
+			}
+		}
+
+		function clik27() {
+			if (clikstotal > 999999) {
+				clikstotal -= 1000000;
+				clikvalue += 17000;
+			}
+		}
+
+		function clik18() {
+			if (clikstotal > 49999999) {
+				clikstotal -= 50000000;
+				clikadder += 420;
+			}
+		}
+
+		function clik28() {
+			if (clikstotal > 49999999) {
+				clikstotal -= 50000000;
+				clikvalue += 850000;
+			}
+		}
+
+	</script>
+</body>
+</html>
